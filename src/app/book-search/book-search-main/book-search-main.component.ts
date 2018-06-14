@@ -17,7 +17,21 @@ export class BookSearchMainComponent implements OnInit {
     {value: 'foreign', viewValue: '국외도서'}
   ];
 
+  displayCategoryName: string = "";
+  searchTitle: string = "";
+
   ngOnInit() {
+  }
+
+  changeValue(category: string): void {
+
+    const fiterBookCategory = this.bookCategory.filter(book => book.value === category);
+
+    this.displayCategoryName = fiterBookCategory[0].viewValue;
+  }
+
+  changeTitleBar(searchInfo): void {
+    this.searchTitle = `${searchInfo.keyword} ( ${searchInfo.category} ) `;
   }
 
 }

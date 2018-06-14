@@ -2,12 +2,16 @@
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
     <img class="mr-3" src="assets/images/search-icon.png" alt="" width="48" height="48">
     <div class="lh-100">
-      <h5 class="mb-0 text-white lh-100">Search Result</h5>
+      <h5 class="mb-0 text-white lh-100">Search Result: {{searchTitle}}</h5>
     </div>
   </div>
 
   <mat-form-field>
-    <mat-select placeholder="도서종류" [(ngModel)]="selectedValue">
+    <mat-select placeholder="도서종류"
+                #bookCategorySelect
+                [(ngModel)]="selectedValue"
+                (ngModelChange)="changeValue(bookCategorySelect.value)" >
+
       <mat-option *ngFor="let category of bookCategory" [value]="category.value">
         {{category.viewValue}}
       </mat-option>
@@ -16,7 +20,8 @@
 
 
   <div>
-    <app-search-box></app-search-box>
+    <app-search-box [bookCategory]="displayCategoryName"
+                    (searchEvent)="changeTitleBar($event)"></app-search-box>
   </div>
   <div>
     <app-detail-box></app-detail-box>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {MatTableDataSource, MatPaginator} from "@angular/material";
 
 interface IBook{
   bauthor: string;
@@ -20,12 +21,16 @@ interface IBook{
 })
 export class ListBoxComponent implements OnInit {
 
+  displayedColumns = ['bisbn', 'btitle', 'bauthor', 'bprice'];
+  dataSource;
   books: IBook[];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private http: HttpClient) {
     this.http.get<IBook[]>('assets/data/book.json').subscribe(res =>{
-      console.log(res);
       this.books = res;
+      this.dataSource = new MatTableDataSource<IBook>(this.books);
     });
   }
 
