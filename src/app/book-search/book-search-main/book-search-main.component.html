@@ -5,18 +5,22 @@
       <h5 class="mb-0 text-white lh-100">Search Result: {{searchTitle}}</h5>
     </div>
   </div>
+  <div class="example-container">
+    <button mat-raised-button color="primary" (click)="changeDOM()">DOM 직접 변경</button>
+    <br>
+    <mat-form-field>
+      <mat-select placeholder="도서종류"
+                  #bookCategorySelect
+                  [(ngModel)]="selectedValue"
+                  (ngModelChange)="changeValue(bookCategorySelect.value)">
 
-  <mat-form-field>
-    <mat-select placeholder="도서종류"
-                #bookCategorySelect
-                [(ngModel)]="selectedValue"
-                (ngModelChange)="changeValue(bookCategorySelect.value)" >
-
-      <mat-option *ngFor="let category of bookCategory" [value]="category.value">
-        {{category.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+        <mat-option *ngFor="let category of bookCategory" [value]="category.value">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="clearCondition()">검색 초기화 </button>
+  </div>
 
 
   <div>

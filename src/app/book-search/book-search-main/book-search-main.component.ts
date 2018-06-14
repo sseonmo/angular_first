@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {SearchBoxComponent} from "../search-box/search-box.component";
 
 @Component({
   selector: 'app-book-search-main',
@@ -32,6 +33,32 @@ export class BookSearchMainComponent implements OnInit {
 
   changeTitleBar(searchInfo): void {
     this.searchTitle = `${searchInfo.keyword} ( ${searchInfo.category} ) `;
+  }
+
+  @ViewChild(SearchBoxComponent) searchComp: SearchBoxComponent;
+  @ViewChildren(SearchBoxComponent) searchCompArr: QueryList<SearchBoxComponent>;
+
+  clearCondition(): void {
+    this.selectedValue = null;
+    this.searchTitle = null;
+
+    /* @ViewChild 를 사용할 경우
+    console.log(this.searchComp._bookCategory);
+    console.log(this.searchComp.keyword);
+    this.searchComp._bookCategory = null;
+    this.searchComp.keyword = null;
+    */
+
+    /* @ViewChildren(Array Type)을 사용할 경우
+    console.log(toString.call(this.searchCompArr.toArray()));
+    */
+    this.searchCompArr.toArray()[0].keyword = null;
+    this.searchCompArr.toArray()[0]._bookCategory = null;
+
+  }
+
+  changeDom(): void {
+
   }
 
 }
