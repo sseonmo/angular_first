@@ -1,0 +1,7 @@
+.example-container {
+  margin-top: 20px;
+  border: 1px solid grey;
+}
+.example-container thead th, .example-container tbody tr td {
+  border: 1px solid #27803b;
+}

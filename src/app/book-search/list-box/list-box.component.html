@@ -1,0 +1,16 @@
+<table class="example-container" >
+  <thead>
+    <th>ISBN</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Price</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book.bisbn}}</td>
+      <td>{{book.btitle}}</td>
+      <td>{{book.bauthor}}</td>
+      <td>{{book.bprice}}</td>
+    </tr>
+  </tbody>
+</table>

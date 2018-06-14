@@ -1,0 +1,18 @@
+
+- Angular Material & Angular Material CDK 설치
+  npm install --save @angular/material @angular/cdk
+
+- Angular Animation Module 설치
+  npm install --save @angular/animations
+
+  몇몇개의 Material Component는 Angular Animation Module에 의존성을 가지고 있습니다.
+  따라서 다음 명령을 수행시켜 Angular Animation Module을 설치해야 합니다
+
+- Gestures 지원을 위한 HammerJS 설치
+  npm install --save hammerjs
+
+- Bootstrap 설치
+  npm install bootstrap@4.0.0-beta.2
+
+- production build
+  ng build --prod --base-href=/my-base-url/
