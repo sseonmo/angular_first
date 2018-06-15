@@ -23,3 +23,4 @@
 - @ViewChild와 @ViewChildren을 이용해 자식 Component의 객체를 제어함.
   ElementRef type의 객체를 획득하면 nativeElement 속성으로 직접 제어가능.
 
+- Content Projection : 부모 Component가 자식 Component에게 template을 전달해 줄 수 있는 기능 - <ng-content></ng-content> 이용함

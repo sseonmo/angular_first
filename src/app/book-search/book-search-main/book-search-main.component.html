@@ -19,13 +19,17 @@
       </mat-select>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="clearCondition()">검색 초기화 </button>
-    <button mat-raised-button color="primary" (click)="changeDOM()">DOM 직접 변경</button>
+    &nbsp;<button mat-raised-button color="primary" (click)="changeDOM()">DOM 직접 변경</button>
   </div>
 
 
   <div>
     <app-search-box [bookCategory]="displayCategoryName"
-                    (searchEvent)="changeTitleBar($event)"></app-search-box>
+                    (searchEvent)="changeTitleBar($event)">
+      <p>Content Projection!</p>
+      <p>First Paragraph</p>
+      <p>Second Paragraph</p>
+    </app-search-box>
   </div>
   <div>
     <app-detail-box></app-detail-box>
