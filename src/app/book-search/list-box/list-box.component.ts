@@ -35,15 +35,21 @@ export class ListBoxComponent implements OnInit {
     });
     */
 
+    this.httpSupportService.updateBooks.subscribe( data => {
+      this.books = data;
+      this.dataSource = new MatTableDataSource<IBook>(this.books);
+      this.dataSource.paginator = this.paginator;
+    })
   }
 
   ngOnInit() {
   }
 
+/*  Rxjs 이용으로 인해 주석처리됨.
   getData(): void {
     this.books = this.httpSupportService.getBooks();
     this.dataSource = new MatTableDataSource<IBook>(this.books);
     this.dataSource.paginator = this.paginator;
-  }
+  }*/
 
 }

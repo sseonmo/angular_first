@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 
 interface IBook{
   bauthor: string;
@@ -20,6 +21,8 @@ interface IBook{
 export class HttpSupportService {
 
   books: IBook[];
+
+  updateBooks: BehaviorSubject<IBook[]> = new BehaviorSubject<IBook[]>(this.books);
 
   constructor(private http: HttpClient) { }
 
@@ -42,8 +45,10 @@ export class HttpSupportService {
                   }
                 });
 
-      this.books = tmp;
-       console.log(this.books);
+      // this.books = tmp;
+      //  console.log(this.books);
+
+      this.updateBooks.next(tmp);
     });
 
   }
