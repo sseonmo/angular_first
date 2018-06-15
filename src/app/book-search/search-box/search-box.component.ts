@@ -15,11 +15,11 @@ export class SearchBoxComponent implements OnInit {
   /* @Input('bookCategory') mySelected:string;  -- 변수명을 변경해서 사용하는 방식 */
 
   /*  setter를 이용한 방식 - 추가적인 작업이 필요할때 유용할거 같음*/
-  _bookCategory: string;
+  _bookCategory: string = null;
   @Input()
   set bookCategory(value: string){
 
-    if( value != null ) {
+    if( value != null && Boolean( value) ) {
       // 추가적인 작업이 들어올 수 있습니다.
       this._bookCategory = 'category: ' +value;
     } else {

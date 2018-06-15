@@ -19,3 +19,7 @@
 
 - @Input() : 속성바인딩을 이용해 자식 컴포넌트에 정보를 전달
 - @Output() : EventEmitter와 이벤트 바인딩을 이용해 부모 컴포넌트에 정보전달
+
+- @ViewChild와 @ViewChildren을 이용해 자식 Component의 객체를 제어함.
+  ElementRef type의 객체를 획득하면 nativeElement 속성으로 직접 제어가능.
+
