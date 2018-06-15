@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {MatTableDataSource, MatPaginator} from "@angular/material";
+import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {HttpSupportService} from "../../http-support.service";
 
 interface IBook{
   bauthor: string;
@@ -27,14 +27,23 @@ export class ListBoxComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: HttpClient) {
+  constructor(private httpSupportService: HttpSupportService) {
+    /* Service 로 변경
     this.http.get<IBook[]>('assets/data/book.json').subscribe(res =>{
       this.books = res;
       this.dataSource = new MatTableDataSource<IBook>(this.books);
     });
+    */
+
   }
 
   ngOnInit() {
+  }
+
+  getData(): void {
+    this.books = this.httpSupportService.getBooks();
+    this.dataSource = new MatTableDataSource<IBook>(this.books);
+    this.dataSource.paginator = this.paginator;
   }
 
 }

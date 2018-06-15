@@ -1,16 +1,23 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {HttpSupportService} from "../../http-support.service";
+import {JSON_DATA_CONFIG, JsonConfig} from "../../json-config";
 
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.css']
+  styleUrls: ['./search-box.component.css'],
+  providers:[
+    {
+      provide: JsonConfig,
+      useValue: JSON_DATA_CONFIG
+    }
+  ]
 })
 export class SearchBoxComponent implements OnInit {
 
   keyword: string = '';
 
-  /**/
   /* @Input() bookCategory:string;*/
   /* @Input('bookCategory') mySelected:string;  -- 변수명을 변경해서 사용하는 방식 */
 
@@ -27,9 +34,11 @@ export class SearchBoxComponent implements OnInit {
     }
   }
 
+  @Input('selectedValue') selectedValue: string;
+
   @Output() searchEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(private httpSupportService: HttpSupportService, private jsonConfig: JsonConfig) { }
 
   ngOnInit() {
   }
@@ -37,10 +46,23 @@ export class SearchBoxComponent implements OnInit {
   setKeyWord(keyword: string): void{
     this.keyword = keyword;
 
+    if(!Boolean(this._bookCategory)){
+      alert('도서종류를 선택해주세요!');
+      return;
+    }
+
     this.searchEvent.emit({
       keyword: `${this.keyword}`,
       category: `${this._bookCategory.replace('category: ','')}`
-    })
+    });
+
+    this.httpSupportService.getJsonData(
+      this.jsonConfig.url,
+      this.jsonConfig.name,
+      this.selectedValue,
+      this.keyword
+    );
+
   }
 
   inputChange(): void{

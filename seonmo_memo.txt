@@ -24,3 +24,6 @@
   ElementRef type의 객체를 획득하면 nativeElement 속성으로 직접 제어가능.
 
 - Content Projection : 부모 Component가 자식 Component에게 template을 전달해 줄 수 있는 기능 - <ng-content></ng-content> 이용함
+
+- Service - constructor(private httpSupportService:HttpSupportService,
+                        @optional private jsonConfig:JsonConfig) { } - Optional Dependency는 의존객체의 주입이 필수가 아니라는 것을 의미 / 단순히 생성자에서 의존객체를 주입받을 때 @Optional decorator를 명시하면 됨.
