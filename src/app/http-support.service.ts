@@ -21,8 +21,10 @@ interface IBook{
 export class HttpSupportService {
 
   books: IBook[];
+  book: IBook;
 
   updateBooks: BehaviorSubject<IBook[]> = new BehaviorSubject<IBook[]>(this.books);
+  updateSelectBook: BehaviorSubject<IBook> = new BehaviorSubject<IBook>(this.book);
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +36,7 @@ export class HttpSupportService {
 
       let tmp: IBook[] = null;
 
-      tmp = res.filter((item, idx, arr) => item.btitle.includes(keyword))
+      tmp = res.filter((item, idx, arr) => item.btitle.toUpperCase().includes(keyword.toUpperCase()) )
                 .filter((item, idx, arr) => {
                   if (category === 'all') {
                     return true;
@@ -55,6 +57,10 @@ export class HttpSupportService {
 
   getBooks(): IBook[] {
     return this.books;
+  }
+
+  clearBooks(): void {
+    this.updateBooks.next([]);
   }
 
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {HttpSupportService} from "../../http-support.service";
+import {SelectionModel} from "@angular/cdk/collections";
 
 interface IBook{
   bauthor: string;
@@ -21,9 +22,13 @@ interface IBook{
 })
 export class ListBoxComponent implements OnInit {
 
+  displayedHeaderColumns = ['isbn', '제목', '저자', '가격'];
   displayedColumns = ['bisbn', 'btitle', 'bauthor', 'bprice'];
   dataSource;
   books: IBook[];
+
+  //event 처리
+  selection = new SelectionModel<IBook>(false, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -51,5 +56,12 @@ export class ListBoxComponent implements OnInit {
     this.dataSource = new MatTableDataSource<IBook>(this.books);
     this.dataSource.paginator = this.paginator;
   }*/
+
+
+  rowSelect(rowValue: IBook): void {
+    this.selection.select(rowValue);
+    this.httpSupportService.updateSelectBook.next(this.selection.selected[0]);
+
+  }
 
 }

@@ -28,22 +28,23 @@
     </ng-container>
 
     <ng-container matColumnDef="btitle">
-      <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef > 제목</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.btitle}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="bauthor">
-      <mat-header-cell *matHeaderCellDef> Author</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> 저자</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.bauthor}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="bprice">
-      <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> 가격</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.bprice}}</mat-cell>
     </ng-container>
 
     <mat-header-row class="list-header-style" *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="rowSelect(row);"></mat-row>
   </mat-table>
 
   <mat-paginator #paginator

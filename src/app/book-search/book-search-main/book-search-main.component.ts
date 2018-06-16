@@ -1,5 +1,8 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {SearchBoxComponent} from "../search-box/search-box.component";
+import {HttpSupportService} from "../../http-support.service";
+import {ListBoxComponent} from "../list-box/list-box.component";
+import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-book-search-main',
@@ -8,7 +11,7 @@ import {SearchBoxComponent} from "../search-box/search-box.component";
 })
 export class BookSearchMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpSupportService: HttpSupportService) { }
 
   selectedValue = null;
 
@@ -26,6 +29,7 @@ export class BookSearchMainComponent implements OnInit {
 
   changeValue(category: string): void {
 
+
     const fiterBookCategory = this.bookCategory.filter(book => book.value === category);
 
     this.displayCategoryName = fiterBookCategory[0].viewValue;
@@ -37,10 +41,12 @@ export class BookSearchMainComponent implements OnInit {
 
   @ViewChild(SearchBoxComponent) searchComp: SearchBoxComponent;
   @ViewChildren(SearchBoxComponent) searchCompArr: QueryList<SearchBoxComponent>;
+  @ViewChild(ListBoxComponent) listBoxComp: ListBoxComponent;
 
   clearCondition(): void {
     this.selectedValue = null;
     this.searchTitle = null;
+    this.displayCategoryName = null;
 
     /* @ViewChild 를 사용할 경우
     console.log(this.searchComp._bookCategory);
@@ -54,6 +60,9 @@ export class BookSearchMainComponent implements OnInit {
     */
     this.searchCompArr.toArray()[0].keyword = null;
     this.searchCompArr.toArray()[0]._bookCategory = null;
+
+    //listComponent 초기화
+    this.httpSupportService.clearBooks();
 
   }
 

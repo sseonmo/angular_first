@@ -1,3 +1,10 @@
+- ng new <project_name> : 프로젝트 생성
+- ng serve (default port :4200)
+- ng serve --o : 브라우저실행
+- ng serve --port : 특정포트로 구동
+- ng g(generate) <구성요소> <구성요서명> : 구성요소(component, service, directive, pipe, module, class, interface, enum, grard)
+- ng bulid --prod(운영환경 build시)
+
 
 - Angular Material & Angular Material CDK 설치
   npm install --save @angular/material @angular/cdk
@@ -27,3 +34,4 @@
 
 - Service - constructor(private httpSupportService:HttpSupportService,
                         @optional private jsonConfig:JsonConfig) { } - Optional Dependency는 의존객체의 주입이 필수가 아니라는 것을 의미 / 단순히 생성자에서 의존객체를 주입받을 때 @Optional decorator를 명시하면 됨.
+

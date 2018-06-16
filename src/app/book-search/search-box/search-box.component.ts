@@ -26,6 +26,8 @@ export class SearchBoxComponent implements OnInit {
   @Input()
   set bookCategory(value: string){
 
+    console.log("bookCategory :", value);
+
     if( value != null && Boolean( value) ) {
       // 추가적인 작업이 들어올 수 있습니다.
       this._bookCategory = 'category: ' +value;
@@ -46,6 +48,7 @@ export class SearchBoxComponent implements OnInit {
   setKeyWord(keyword: string): void{
     this.keyword = keyword;
 
+    // console.log("this._bookCategory", this._bookCategory);
     if(!Boolean(this._bookCategory)){
       alert('도서종류를 선택해주세요!');
       return;
