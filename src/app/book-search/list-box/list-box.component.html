@@ -39,7 +39,7 @@
 
     <ng-container matColumnDef="bprice">
       <mat-header-cell *matHeaderCellDef> 가격</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.bprice}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.bprice | bookPrice}}</mat-cell>
     </ng-container>
 
     <mat-header-row class="list-header-style" *matHeaderRowDef="displayedColumns"></mat-header-row>

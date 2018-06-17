@@ -20,6 +20,7 @@ import {MatSelectModule} from "@angular/material/select";
 //COMPOSITION_BUFFER_MODE - 한글은 조합형 문자이기 때문에 글자가 다 만들어 지기 전까지는 해당 이벤트가 발생하지 않게 해줌
 import {COMPOSITION_BUFFER_MODE, FormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {BookPricePipe} from "../book-price.pipe";
 
 
 @NgModule({
@@ -40,10 +41,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     {
       provide: COMPOSITION_BUFFER_MODE,
       useValue: false
-
     }
   ],
-  declarations: [BookSearchMainComponent, SearchBoxComponent, DetailBoxComponent, ListBoxComponent]
+  declarations: [BookSearchMainComponent, SearchBoxComponent, DetailBoxComponent, ListBoxComponent, BookPricePipe]
 })
 export class BookSearchModule { }
 
