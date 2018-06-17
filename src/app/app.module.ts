@@ -17,13 +17,15 @@ import {MovieSearchModule} from "./movie-search/movie-search.module";
 
 // Routing Module import
 import {AppComponent} from './app.component';
+import {TextColorDirective} from "./text-color.directive";
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TextColorDirective
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import {AppComponent} from './app.component';
     AppRoutingModule,
     BookSearchModule,
     MovieSearchModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
